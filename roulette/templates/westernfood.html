@@ -17,7 +17,7 @@
 		<img src="{% static 'img/marker.png' %}" class="marker" alt="마커">
 		<a href="javascript:;" class="btn_start"><button>메뉴 고르기</button></a>
 		<img src="{% static 'img/westernfood.png' %}" class="wheel" alt="룰렛이미지">
-		<p>오늘의 메뉴는 <span id="menu"></span></p>
+		<p>오늘의 메뉴는 <a href="#" class="link"><span id="menu"></span></a></p>
 	</div>
   <div>
     <a href="{% url 'roulette:mainpage' %}"><button>처음으로</button></a>
@@ -78,9 +78,12 @@
 			TweenMax.set( _wheel, { rotation:0 });
 			
 			var angle = 360 / _items.length;
+      var url = "{% url 'roulette:map' 123 %}";
+      var id = _items[ $ran ];
 
 			TweenMax.to( _wheel, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut, onComplete:function(){
 				document.getElementById('menu').innerHTML = _items[ $ran ];
+        $('.link').attr('href', url.replace('123', id));
 			}});
 		}
 

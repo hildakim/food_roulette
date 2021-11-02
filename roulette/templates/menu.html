@@ -79,7 +79,7 @@
 			var id = String($ran);
 			TweenMax.to( _wheel, _mTime, { rotation: $ran * angle , ease:Power0.easeInOut, onComplete:function(){
 				document.getElementById('menu').innerHTML = _items[ $ran ];
-				$('.link').prop('href', url.replace('123', id));
+				$('.link').attr('href', url.replace('123', id));
 			}});
 		}
 
