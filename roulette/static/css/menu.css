@@ -1,0 +1,35 @@
+* {
+  text-align: center;
+}
+
+.marker {
+  position: absolute;
+  width: 60px;
+  left: 785px;
+  top: 10px;
+  z-index: 2;
+}
+
+.wheel {
+  width: 35%;
+  height: 35%;
+  margin-top: 40px;
+}
+
+
+
+.blur {
+  animation: blur 10s;
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(1.5px);
+  }
+  80% {
+    filter: blur(1.5px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
