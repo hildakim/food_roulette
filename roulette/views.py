@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def mainpage(request):
-    return render(request, "menu.html")
+    return render(request, "roulette.html")
 
 def menu_roulette(request, menu_id):
     menu = ['fastfood', 'westernfood', 'koreanfood', 'chinesefood', 'japanesefood']
