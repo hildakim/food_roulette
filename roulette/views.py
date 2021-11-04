@@ -11,7 +11,5 @@ def menu_roulette(request, menu_id):
 
 def map(request, food):
     #food : 룰렛에서 받아온 메뉴명
-    menu = food
-    
-    return render(request, 'map.html', {'menu': menu})
+    return render(request, 'map.html', {'menu': food})
 
