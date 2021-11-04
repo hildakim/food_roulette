@@ -1,0 +1,124 @@
+@font-face {
+    font-family: 'TTTogether';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/TTTogetherA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    display: grid;
+    grid-template-areas: "header"
+                            "main";
+    background-color:skyblue;
+    justify-content: center;
+
+}
+
+header {
+    box-sizing: border-box;
+    grid-area: header;
+    text-align: center;
+    font-family: 'TTTogether';
+    font-size: 45px;
+    margin: 15px;
+    /* text-shadow: -4px 4px 0px white, 4px 4px 0px white, 4px 4px 0px white, 4px -4px 0px white; */
+    text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+
+}
+
+.category {
+    font-size: 35px;
+    grid-area: header;
+    text-align: center;
+    font-family: 'TTTogether';
+    margin: 10px;
+    margin-top: 1px;
+    color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+/* div { 
+    border: 1px solid black;
+} */
+
+.main {
+    grid-area: main;
+}
+
+/* main{
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+}  */
+
+
+/*추가 */
+
+button, p {
+    text-align: center;
+    font-family: 'TTTogether';
+    font-size: 20px;
+}
+
+.container {
+    background-color: white;
+    padding: 0px 25px 10px 25px;
+    border-radius: 0px 0px 15px 15px;
+}
+.pointer {
+    background-color: white;
+    padding: 10px 10px 5px 10px;
+    border-radius: 15px 15px 0px 0px;
+}
+.print_menu p{
+    font-size: 25px;
+}
+.link {
+    text-decoration:none;
+}
+#menu{
+    color: black;
+    background-color: #99D9EA;
+    font-size: 30px;
+}
+#menu:hover {
+    color: white;
+    background-color: #047fb8;
+}
+
+.trigger {
+    margin-top: 50px;
+    font-size: 30px;
+    border-radius: 15px;
+    padding: 10px 20px;
+    border: 0px;
+    /* background-color: skyblue; rgb(97, 179, 255); */
+    /* color: white; */
+    cursor: pointer;
+}
+
+#menu_f{
+    color: black;
+    background-color: #99D9EA;
+    font-size: 25px;
+}
+#menu_f:hover {
+    color: white;
+    background-color: #047fb8;
+}
+
+.btnToHome { 
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+}
+.btnToHome a{
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 25px;
+    font-family: 'TTTogether';
+    text-decoration: none;
+    color: black;
+    padding: 8px;
+}

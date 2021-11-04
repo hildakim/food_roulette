@@ -55,7 +55,7 @@ ROOT_URLCONF = 'food_roulette.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['food_roulette/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,6 +126,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'food_roulette', 'static'),
     os.path.join(BASE_DIR, 'roulette', 'static'),
 ]
 
