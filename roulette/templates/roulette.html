@@ -1,132 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<link>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdn.sobekrepository.org/includes/jquery-rotate/2.2/jquery-rotate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      background-color:beige;
-    }
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{%static 'css/roulette.css' %}">
 
-    main{
-      display: flex;
-      flex-direction: column;
-      max-width: 60%;
-    }
-    
-
-
-    .fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      clip: rect(0px,400px,400px,200px);
-    }
-    .fill::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      clip: rect(0px, 200px, 400px, 0px);
-      transform: rotate(72deg);
-    }
-    .fill_1::after{
-      background-color: #CDE0EE;
-    }
-    .fill_2 {
-      transform: rotate(72deg);
-    }
-    .fill_2::after {
-      background-color: #BEE9D1;
-    }
-    .fill_3 {
-      transform: rotate(144deg);
-    }
-    .fill_3::after {
-      background-color: #94DBA0;
-    }
-    .fill_4 {
-      transform: rotate(216deg);
-    }
-    .fill_4::after {
-      background-color: #DFBC9F;
-    }
-    .fill_5 {
-      transform: rotate(288deg);
-    }
-    .fill_5::after {
-      background-color: #DED29C;
-    }
-  
-    .content {
-    font-size: 30px;
-    font-weight: bold;
-    padding-top: 30px;
-    height: 370px;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-  }
-  .content_1 {
-    transform: rotate(35deg);
-  }
-  .content_2 {
-    transform: rotate(110deg);
-  }
-  .content_3 {
-    transform: rotate(180deg);
-  }
-  .content_4 {
-    transform: rotate(250deg);
-  }
-  .content_5 {
-    transform: rotate(320deg);
-  }
-    
-    .roulette {
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: white;
-      border: 3px solid black;
-      position: relative;
-    }
-    
-    
-    .trigger {
-      margin-top: 20px;
-      font-size: 30px;
-      border-radius: 15px;
-      padding: 10px 20px;
-      border: 0px;
-      background-color: #DFBC9F;
-      cursor: pointer;
-    }
-  </style>
-</head>
 <body>
   <div class="main">
-    <div class="banner" style="display:flex; flex-direction:column; text-align:center;">
-      <div>
-        <h1>돌려 돌려 메뉴판</h1>
-      </div>
-      <div>
-        <img src="../static/img/arrow.png" style="height: 50px;">
-      </div>
+    <div class="pointer" style="display:flex; justify-content: center;">
+      <img src="../static/img/arrow.png" style="height: 50px;">
     </div>
     
     <!--룰렛-->
@@ -147,7 +27,7 @@
       <div style="display: flex; justify-content:space-around;">
         <button class="trigger">뽑기</button>
       </div>
-      <div style="display: flex; justify-content:space-around;">
+      <div style="display: flex; justify-content:space-around;" class="print_menu">
         <p>오늘의 메뉴는 <a href="#" class="link"><span id="menu"></span></a></p>
       </div>
     </div>
@@ -182,10 +62,16 @@
       ];
 
       roulette.animate(loopAnimation,loopAnimationOptions);
-      document.getElementById('menu').innerHTML=resultMenu;
+
+      selected_menu = document.getElementById('menu');
+      setTimeout(() => {
+        selected_menu.innerHTML=`${resultMenu} (👈클릭!)`;
+      }, 5000);
+
       $('.link').attr('href',url.replace('123',parseInt(selectedIdx)));
     }
 
   </script>
 </body>
-</html>
+
+{% endblock %}
