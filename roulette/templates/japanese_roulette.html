@@ -5,6 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdn.sobekrepository.org/includes/jquery-rotate/2.2/jquery-rotate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+  
   <style>
     body {
       display: flex;
@@ -178,6 +183,9 @@
       <div>
         <button class="trigger">뽑기</button>
       </div>
+      <div>
+        <p>오늘은 <a href="#" class="link"><span id="menu_f"></span></a></p>
+      </div>
     </div>
   </div>
 
@@ -186,6 +194,8 @@
     const content=document.querySelectorAll(".roulette .fill .content");
     const trigger = document.querySelector(".trigger");
     const BASE_ROTATE_DEG=7200;
+    const ROULETTE_DATA=['우동','규동','초밥','돈까스','카레','모밀','라멘','일식덮밥']
+    var url="{% url 'roulette:map' 123 %}"
     const loopAnimationOptions={
       fill:'forwards',
       duration:5000,
@@ -193,14 +203,19 @@
     }
     trigger.addEventListener("click",onClickTrigger);
     function onClickTrigger(e) {
-      const selectedIdx=Math.floor(Math.random()*7);
-      const additionalDeg=22.5*(2*(1-selectedIdx)+1);
+      const selectedIdx=parseInt(Math.random()*ROULETTE_DATA.length);
+      const additionalDeg=-(360/ROULETTE_DATA.length)*selectedIdx-22.5;
+      var resultMenu=ROULETTE_DATA[selectedIdx];
       const totalDeg=BASE_ROTATE_DEG+additionalDeg;
       const loopAnimation=[
         {transform:'rotate(0deg)'},
         {transform:`rotate(${totalDeg}deg)`}
       ];
       roulette.animate(loopAnimation,loopAnimationOptions);
+
+      roulette.animate(loopAnimation,loopAnimationOptions);
+      document.getElementById('menu_f').innerHTML=resultMenu;
+      $('.link').attr('href',url.replace('123',parseInt(selectedIdx)));
     }
 
   </script>

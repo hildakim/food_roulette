@@ -5,6 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdn.sobekrepository.org/includes/jquery-rotate/2.2/jquery-rotate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+	
   <style>
     body {
       display: flex;
@@ -34,71 +39,42 @@
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      clip: rect(0px,400px,400px,200px);
+      -webkit-clip-path: polygon(0% 0%, 50% 50%, 0% 50%, 0% 0%);
+      clip-path: polygon(0% 0%, 50% 50%, 0% 50%, 0% 0%);
     }
-    .fill::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      clip: rect(0px, 200px, 400px, 0px);
-      transform: rotate(72deg);
-    }
-    .fill_1::after{
-      background-color: #CDE0EE;
+
+    .fill_1 {
+      background: brown;
     }
     .fill_2 {
       transform: rotate(72deg);
+      background: blueviolet;
     }
-    .fill_2::after {
-      background-color: #BEE9D1;
-    }
+    
     .fill_3 {
       transform: rotate(144deg);
-    }
-    .fill_3::after {
-      background-color: #94DBA0;
+      background: beige;
     }
     .fill_4 {
       transform: rotate(216deg);
+      background:pink;
     }
-    .fill_4::after {
-      background-color: #DFBC9F;
-    }
+    
     .fill_5 {
       transform: rotate(288deg);
-    }
-    .fill_5::after {
-      background-color: #DED29C;
+      background: skyblue;
     }
   
     .content {
-    font-size: 30px;
-    font-weight: bold;
-    padding-top: 30px;
-    height: 370px;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-  }
-  .content_1 {
-    transform: rotate(35deg);
-  }
-  .content_2 {
-    transform: rotate(110deg);
-  }
-  .content_3 {
-    transform: rotate(180deg);
-  }
-  .content_4 {
-    transform: rotate(250deg);
-  }
-  .content_5 {
-    transform: rotate(320deg);
-  }
+      font-size: 30px;
+      font-weight: bold;
+      width: 260px;
+      height: 260px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      text-align: center;
+    }
     
     .roulette {
       width: 400px;
@@ -130,20 +106,17 @@
     <!--룰렛-->
     <div class="container">
       <div class="roulette">
-        <div class="fill fill_1"></div>
-        <div class="fill fill_2"></div>
-        <div class="fill fill_3"></div>
-        <div class="fill fill_4"></div>
-        <div class="fill fill_5"></div>  
-        <!-- content -->
-        <div class="content content_1">한식</div>
-        <div class="content content_2">중식</div>
-        <div class="content content_3">일식</div>
-        <div class="content content_4">양식</div>
-        <div class="content content_5">패스트푸드</div>
+        <div class="fill fill_1"><div class="content"></div></div>
+        <div class="fill fill_2"><div class="content"></div></div>
+        <div class="fill fill_3"><div class="content"></div></div>
+        <div class="fill fill_4"><div class="content"></div></div>
+        <div class="fill fill_5"><div class="content"></div></div>  
       </div>
       <div>
         <button class="trigger">뽑기</button>
+      </div>
+      <div>
+        <p>오늘의 메뉴는 <a href="#" class="link"><span id="menu"></span></a></p>
       </div>
     </div>
   </div>
@@ -152,22 +125,34 @@
     const roulette = document.querySelector(".roulette");
     const content=document.querySelectorAll(".roulette .fill .content");
     const trigger = document.querySelector(".trigger");
+    const ROULETTE_DATA=['한식','중식','일식','양식','패스트푸드'];
+    const DEFAULT_TEXT_ZERO="X";
     const BASE_ROTATE_DEG=7200;
     const loopAnimationOptions={
       fill:'forwards',
       duration:5000,
       easing:'ease-in-out'
     }
+    var url="{% url 'roulette:menu_roulette' 123 %}"
+
     trigger.addEventListener("click",onClickTrigger);
+
+    content.forEach((el,index) => {
+      el.textContent=ROULETTE_DATA[index] || DEFAULT_TEXT_ZERO;
+    })
+
     function onClickTrigger(e) {
-      const selectedIdx=Math.floor(Math.random()*7);
-      const additionalDeg=22.5*(2*(1-selectedIdx)+1);
+      const selectedIdx=(Math.random()*ROULETTE_DATA.length);
+      const additionalDeg=(360/ROULETTE_DATA.length)*selectedIdx;
+      var resultMenu=ROULETTE_DATA[parseInt(selectedIdx)];
       const totalDeg=BASE_ROTATE_DEG+additionalDeg;
       const loopAnimation=[
         {transform:'rotate(0deg)'},
         {transform:`rotate(${totalDeg}deg)`}
       ];
       roulette.animate(loopAnimation,loopAnimationOptions);
+      document.getElementById('menu').innerHTML=resultMenu;
+        $('.link').attr('href',url.replace('123',parseInt(selectedIdx)));
     }
 
   </script>
