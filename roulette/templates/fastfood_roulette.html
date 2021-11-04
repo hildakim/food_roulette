@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    main > div{
+      display: flex;
+      flex-direction: column;
+      max-width: 60%;
+      justify-content: center;
+    }
+
+    .arrow {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 20px solid #000;
+      margin-bottom: 10px;
+    }
+
+    .fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      clip: rect(0px,400px,400px,200px);
+    }
+    .fill::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      clip: rect(0px, 200px, 400px, 0px);
+      transform: rotate(72deg);
+    }
+    .fill_1::after{
+      background-color: #AEBF73;
+    }
+    .fill_2 {
+      transform: rotate(72deg);
+    }
+    .fill_2::after {
+      background-color: #46554F;
+    }
+    .fill_3 {
+      transform: rotate(144deg);
+    }
+    .fill_3::after {
+      background-color: #F1AF79;
+    }
+    .fill_4 {
+      transform: rotate(216deg);
+    }
+    .fill_4::after {
+      background-color: #FBD6AB;
+    }
+    .fill_5 {
+      transform: rotate(288deg);
+    }
+    .fill_5::after {
+      background-color: #FAE4D8;
+    }
+  
+    .content {
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 30px;
+    height: 370px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+  }
+  .content_1 {
+    transform: rotate(35deg);
+  }
+  .content_2 {
+    transform: rotate(110deg);
+  }
+  .content_3 {
+    transform: rotate(180deg);
+  }
+  .content_4 {
+    transform: rotate(250deg);
+  }
+  .content_5 {
+    transform: rotate(320deg);
+  }
+    
+    .roulette {
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid black;
+      position: relative;
+    }
+    
+    
+    .trigger {
+      margin-top: 20px;
+      font-size: 30px;
+      border-radius: 15px;
+      padding: 10px 20px;
+      border: 3px solid black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div style="display:flex; justify-content:center">
+      <h1>돌려 돌려 메뉴판</h1>
+    </div>
+    <div class="arrow" ></div>
+    
+    <!--룰렛-->
+    <div class="container">
+      <div class="roulette">
+        <div class="fill fill_1"></div>
+        <div class="fill fill_2"></div>
+        <div class="fill fill_3"></div>
+        <div class="fill fill_4"></div>
+        <div class="fill fill_5"></div>  
+        <!-- content -->
+        <div class="content content_1">떡볶이</div>
+        <div class="content content_2">피자</div>
+        <div class="content content_3">햄버거</div>
+        <div class="content content_4">치킨</div>
+        <div class="content content_5">샌드위치</div>
+      </div>
+      <div>
+        <button class="trigger">뽑기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const roulette = document.querySelector(".roulette");
+    const content=document.querySelectorAll(".roulette .fill .content");
+    const trigger = document.querySelector(".trigger");
+    const BASE_ROTATE_DEG=7200;
+    const loopAnimationOptions={
+      fill:'forwards',
+      duration:5000,
+      easing:'ease-in-out'
+    }
+    trigger.addEventListener("click",onClickTrigger);
+    function onClickTrigger(e) {
+      const selectedIdx=Math.floor(Math.random()*7);
+      const additionalDeg=22.5*(2*(1-selectedIdx)+1);
+      const totalDeg=BASE_ROTATE_DEG+additionalDeg;
+      const loopAnimation=[
+        {transform:'rotate(0deg)'},
+        {transform:`rotate(${totalDeg}deg)`}
+      ];
+      roulette.animate(loopAnimation,loopAnimationOptions);
+    }
+
+  </script>
+</body>
+</html>
