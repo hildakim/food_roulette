@@ -14,22 +14,13 @@
     body {
       display: flex;
       justify-content: center;
+      background-color:beige;
     }
 
-    main > div{
+    main{
       display: flex;
       flex-direction: column;
       max-width: 60%;
-      justify-content: center;
-    }
-
-    .arrow {
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 20px solid #000;
-      margin-bottom: 10px;
     }
 
     .fill {
@@ -127,10 +118,15 @@
 </head>
 <body>
   <div class="main">
-    <div style="display:flex; justify-content:center">
-      <h1>돌려 돌려 메뉴판</h1>
+    <div class="banner" style="display:flex; flex-direction:column; text-align:center;">
+      <div>
+        <h1>돌려 돌려 메뉴판</h1>
+      </div>
+      <div>
+        <img src="../static/img/arrow.png" style="height: 50px;">
+      </div>
     </div>
-    <div class="arrow" ></div>
+  
     
     <!--룰렛-->
     <div class="container">

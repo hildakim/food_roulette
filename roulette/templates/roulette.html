@@ -13,23 +13,16 @@
     body {
       display: flex;
       justify-content: center;
+      background-color:beige;
     }
 
-    main > div{
+    main{
       display: flex;
       flex-direction: column;
       max-width: 60%;
-      justify-content: center;
     }
+    
 
-    .arrow {
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 20px solid #000;
-      margin-bottom: 10px;
-    }
 
     .fill {
       position: absolute;
@@ -119,20 +112,25 @@
       font-size: 30px;
       border-radius: 15px;
       padding: 10px 20px;
-      border: 3px solid black;
+      border: 0px;
+      background-color: #DFBC9F;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="main">
-    <div style="display:flex; justify-content:center">
-      <h1>돌려 돌려 메뉴판</h1>
+    <div class="banner" style="display:flex; flex-direction:column; text-align:center;">
+      <div>
+        <h1>돌려 돌려 메뉴판</h1>
+      </div>
+      <div>
+        <img src="../static/img/arrow.png" style="height: 50px;">
+      </div>
     </div>
-    <div class="arrow" ></div>
     
     <!--룰렛-->
-    <div class="container">
+    <div class="container" style="display:flex; flex-direction:column;">
       <div class="roulette">
         <div class="fill fill_1"></div>
         <div class="fill fill_2"></div>
@@ -146,10 +144,10 @@
         <div class="content content_4">양식</div>
         <div class="content content_5">패스트푸드</div>
       </div>
-      <div>
+      <div style="display: flex; justify-content:space-around;">
         <button class="trigger">뽑기</button>
       </div>
-      <div>
+      <div style="display: flex; justify-content:space-around;">
         <p>오늘의 메뉴는 <a href="#" class="link"><span id="menu"></span></a></p>
       </div>
     </div>
@@ -182,6 +180,7 @@
         {transform:'rotate(0deg)'},
         {transform:`rotate(${totalDeg}deg)`}
       ];
+
       roulette.animate(loopAnimation,loopAnimationOptions);
       document.getElementById('menu').innerHTML=resultMenu;
       $('.link').attr('href',url.replace('123',parseInt(selectedIdx)));

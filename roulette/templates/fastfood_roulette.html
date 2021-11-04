@@ -9,18 +9,18 @@
   <script src="https://cdn.sobekrepository.org/includes/jquery-rotate/2.2/jquery-rotate.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
-ㄴ
+
   <style>
     body {
       display: flex;
       justify-content: center;
+      background-color:beige;
     }
 
-    main > div{
+    main{
       display: flex;
       flex-direction: column;
       max-width: 60%;
-      justify-content: center;
     }
 
     .arrow {
@@ -127,10 +127,15 @@
 </head>
 <body>
   <div class="main">
-    <div style="display:flex; justify-content:center">
-      <h1>돌려 돌려 메뉴판</h1>
+    <div class="banner" style="display:flex; flex-direction:column; text-align:center;">
+      <div>
+        <h1>돌려 돌려 메뉴판</h1>
+      </div>
+      <div>
+        <img src="../static/img/arrow.png" style="height: 50px;">
+      </div>
     </div>
-    <div class="arrow" ></div>
+
     
     <!--룰렛-->
     <div class="container">
@@ -160,14 +165,15 @@
     const roulette = document.querySelector(".roulette");
     const content=document.querySelectorAll(".roulette .fill .content");
     const trigger = document.querySelector(".trigger");
-    const BASE_ROTATE_DEG=7200;
     const ROULETTE_DATA=['떡볶이','피자','햄버거','치킨','샌드위치'];
     var url="{% url 'roulette:map' 123 %}"
+    const BASE_ROTATE_DEG=7200;
     const loopAnimationOptions={
       fill:'forwards',
       duration:5000,
       easing:'ease-in-out'
     }
+    trigger.addEventListener("click",onClickTrigger);
     function onClickTrigger(e) {
       const selectedIdx=parseInt(Math.random()*ROULETTE_DATA.length);
       const additionalDeg=-(360/ROULETTE_DATA.length)*selectedIdx-35;
