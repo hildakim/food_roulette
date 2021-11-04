@@ -5,14 +5,17 @@
     font-style: normal;
 }
 
+
 body {
     display: grid;
     grid-template-areas: "header"
                             "main";
     background-color:skyblue;
     justify-content: center;
-
+    background-image: url('food-pattern-free-img.png');
+    background-repeat: repeat;
 }
+
 
 header {
     box-sizing: border-box;
@@ -62,12 +65,12 @@ button, p {
 
 .container {
     background-color: white;
-    padding: 0px 25px 10px 25px;
+    padding: 0px 45px 20px 45px;
     border-radius: 0px 0px 15px 15px;
 }
 .pointer {
     background-color: white;
-    padding: 10px 10px 5px 10px;
+    padding: 15px 10px 5px 10px;
     border-radius: 15px 15px 0px 0px;
 }
 .print_menu p{

@@ -49,7 +49,7 @@
     const BASE_ROTATE_DEG=7200;
     const loopAnimationOptions={
       fill:'forwards',
-      duration:5000,
+      duration:3000,
       easing:'ease-in-out'
     }
     trigger.addEventListener("click",onClickTrigger);
@@ -66,10 +66,10 @@
 
       roulette.animate(loopAnimation,loopAnimationOptions);
 
-      selected_menu = document.getElementById('menu_f')
+      selected_menu = document.getElementById('menu_f');
       setTimeout(() => {
         selected_menu.innerHTML=`${resultMenu} (👈클릭!)`;
-      }, 5000)
+      }, 3000);
       // document.getElementById('menu_f').innerHTML=resultMenu;
       $('.link').attr('href',url.replace('123',resultMenu));
     }

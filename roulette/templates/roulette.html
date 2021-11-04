@@ -42,7 +42,7 @@
     var url="{% url 'roulette:menu_roulette' 123 %}"
     const loopAnimationOptions={
       fill:'forwards',
-      duration:5000,
+      duration:3000,
       easing:'ease-in-out'
     }
 
@@ -66,7 +66,7 @@
       selected_menu = document.getElementById('menu');
       setTimeout(() => {
         selected_menu.innerHTML=`${resultMenu} (👈클릭!)`;
-      }, 5000);
+      }, 3000);
 
       $('.link').attr('href',url.replace('123',parseInt(selectedIdx)));
     }
