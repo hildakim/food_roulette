@@ -1,89 +1,131 @@
+html,
+body {
+  height: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .fill {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    clip: rect(0px,400px,400px,200px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  clip: rect(0px, 400px, 400px, 200px);
 }
 .fill::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    clip: rect(0px, 200px, 400px, 0px);
-    transform: rotate(72deg);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  clip: rect(0px, 200px, 400px, 0px);
+  transform: rotate(72deg);
 }
-.fill_1::after{
-    /* background-color:#A9ECA2; */
-    background-color:#516091;
+.fill_1::after {
+  /* background-color:#A9ECA2; */
+  background-color: #516091;
 }
 .fill_2 {
-    transform: rotate(72deg);
+  transform: rotate(72deg);
 }
 .fill_2::after {
-    /* background-color:#F5FFCB; */
-    background-color:#74BEC1;
-
+  /* background-color:#F5FFCB; */
+  background-color: #74bec1;
 }
 .fill_3 {
-    transform: rotate(144deg);
+  transform: rotate(144deg);
 }
 .fill_3::after {
-    /* background-color:#FFE3B0; */
-    background-color:#ADEBBE;
-
+  /* background-color:#FFE3B0; */
+  background-color: #adebbe;
 }
 .fill_4 {
-    transform: rotate(216deg);
+  transform: rotate(216deg);
 }
 .fill_4::after {
-    /* background-color:#F5C8BD; */
-    background-color:#EEF3AD;
-
+  /* background-color:#F5C8BD; */
+  background-color: #eef3ad;
 }
 .fill_5 {
-    transform: rotate(288deg);
+  transform: rotate(288deg);
 }
 .fill_5::after {
-    /* background-color:#bde0f5; */
-    background-color:#F5FFCB;
+  /* background-color:#bde0f5; */
+  background-color: #f5ffcb;
 }
 
 .content {
-    font-size: 30px;
-    font-weight: bold;
-    padding-top: 30px;
-    height: 370px;
-    position: absolute;
-    width: 100%;
-    text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 30px;
+  height: 370px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
 }
 .content_1 {
-    transform: rotate(35deg);
+  transform: rotate(35deg);
 }
 .content_2 {
-    transform: rotate(110deg);
+  transform: rotate(110deg);
 }
 .content_3 {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .content_4 {
-    transform: rotate(250deg);
+  transform: rotate(250deg);
 }
 .content_5 {
-    transform: rotate(320deg);
+  transform: rotate(320deg);
 }
 
 .roulette {
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: white;
-    /* border: 3px solid black; */
-    position: relative;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: white;
+  /* border: 3px solid black; */
+  position: relative;
+}
+
+@media screen and (max-width: 500px) {
+  .roulette {
+    width: 200px;
+    height: 200px;
+  }
+  .fill {
+    width: 200px;
+    height: 200px;
+    clip: rect(0px, 200px, 200px, 100px);
+  }
+
+  .fill::after {
+    width: 200px;
+    height: 200px;
+    clip: rect(0px, 100px, 200px, 0px);
+  }
+
+  .content {
+    height: 170px;
+    font-size: 15px;
+  }
+
+  .roulette {
+    margin-top: 1rem;
+  }
 }
