@@ -98,7 +98,7 @@ header {
   position: relative;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .roulette {
     width: 200px;
     height: 200px;
