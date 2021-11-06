@@ -1,0 +1,1 @@
+web: gunicorn food_roulette.wsgi --log-file -
