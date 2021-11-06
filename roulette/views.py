@@ -1,5 +1,4 @@
 from django.shortcuts import render
-import os
 
 # Create your views here.
 def mainpage(request):
@@ -12,7 +11,6 @@ def menu_roulette(request, menu_id):
     return render(request, urls, {"category" : category[menu_id]})
 
 def map(request, food):
-    request.META['HTTP_AUTHORIZATION'] = os.environ.get('REST_API_KEY')
     #food : 룰렛에서 받아온 메뉴명
     return render(request, 'map.html', {'menu': food})
 
